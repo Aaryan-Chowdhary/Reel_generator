@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zero-Cost Reel Generator</title>
+    <style>
+        body { background: #111; color: white; font-family: sans-serif; text-align: center; padding-top: 50px; }
+        input { padding: 10px; width: 300px; font-size: 1.2rem; }
+        button { padding: 10px 20px; font-size: 1.2rem; background: #00d4ff; border: none; cursor: pointer; }
+        .box { border: 1px solid #333; margin: 20px auto; padding: 20px; width: 350px; background: #222; }
+    </style>
+</head>
+<body>
+    <h1>🎬 AutoReel Maker</h1>
+    
+    <form action="/generate" method="post">
+        <input type="text" name="topic" placeholder="Enter topic (e.g. Space)" required>
+        <button type="submit">Create</button>
+    </form>
+
+    {% if video_ready %}
+    <div class="box">
+        <p><i>{{ script }}</i></p>
+        <video width="300" controls autoplay>
+            <source src="{{ url_for('static', filename='final_reel.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+    {% endif %}
+</body>
+</html>
